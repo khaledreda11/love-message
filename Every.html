@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>رسالة حب يومية</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Tahoma', sans-serif;
+      margin: 0;
+      background-color: #fff0f5;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+
+    .message-box {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 80%;
+      max-width: 500px;
+    }
+
+    h1 {
+      color: #e91e63;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .share-buttons button {
+      padding: 10px 15px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .whatsapp {
+      background-color: #25D366;
+    }
+
+    .facebook {
+      background-color: #3b5998;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="message-box">
+    <h1>رسالتك اليوم:</h1>
+    <p id="loveMessage">جارٍ التحميل...</p>
+
+    <div class="share-buttons">
+      <button class="whatsapp" onclick="shareWhatsApp()">مشاركة على واتساب</button>
+      <button class="facebook" onclick="shareFacebook()">مشاركة على فيسبوك</button>
+    </div>
+  </div>
+
+  <script>
+    // جلب صورة خلفية عشوائية من Unsplash
+    const fetchRandomBackground = async () => {
+      const response = await fetch('https://api.unsplash.com/photos/random?client_id=YOUR_ACCESS_KEY');
+      const data = await response.json();
+      const backgroundUrl = data[0].urls.full; // جلب رابط الصورة
+      document.body.style.backgroundImage = `url(${backgroundUrl})`;
+    };
+
+    // استبدال مفتاح الوصول هنا مع مفتاح API الخاص بك
+    // يمكنك الحصول على مفتاح الوصول الخاص بك من موقع Unsplash https://unsplash.com/developers
+
+    // استدعاء الدالة لجلب خلفية جديدة
+    fetchRandomBackground();
+
+    const messages = [
+      "بحبك من قلبي بجد.",
+      "أنتِ أجمل حاجة حصلتلي.",
+      "يوم من غيرك ملوش طعم.",
+      "كل لحظة معاك بالدنيا.",
+      "أنت نور عيني وسر سعادتي.",
+      "بحبك يا كتكوتي، ودايمًا هفضل أحبك!",
+      "وجودك في حياتي هو سر سعادتي.",
+      "كل لحظة معاك هي أغلى لحظة في حياتي.",
+      "أنت النعمة التي لا أستطيع العيش بدونها.",
+      "يا أغلى من عيني، أحبك بقدر ما في القلب.",
+      "كل لحظة معاك تساوي العمر كله.",
+      "أنت مصدر سعادتي، والسبب في ابتسامتي.",
+      "أنت السبب في كل ضحكة، وكل فرحة في حياتي.",
+      "بحبك أكثر من أي وقت مضى، وكل يوم يزداد حبي لك.",
+      "أنت كل ما أحتاجه في هذه الحياة، وأنت من يستحق كل الحب.",
+      "أنت أول حب في حياتي، وسأظل أحبك للأبد.",
+      "أنت الأمل في حياتي، ودنيتي لا تكتمل بدونك.",
+      "كل كلمة أحبك تظل قليلة لما أقولها ليك.",
+      "أنت الحلم الذي تحقق، والواقع الذي يسعدني.",
+      "أنت الأمل في قلبي، والحب الذي لا ينتهي.",
+      "يا سيدي، بحبك أكثر مما تتخيل، وأنت كل شيء لي."
+    ];
+
+    const randomIndex = new Date().getDate() % messages.length;
+    const message = messages[randomIndex];
+    document.getElementById("loveMessage").textContent = message;
+
+    function shareWhatsApp() {
+      const url = `https://wa.me/?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+
+    function shareFacebook() {
+      const url = `https://www.facebook.com/sharer/sharer.php?u=&quote=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+
+</body></html>
